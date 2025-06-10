@@ -1,5 +1,7 @@
+gunicorn
 pandas
 spacy
 tqdm
 flask
 flask-cors
+
