@@ -3,4 +3,4 @@ flask-cors
 pandas
 spacy
 tqdm
-serverless-wsgi==1.7.0
+gunicorn
