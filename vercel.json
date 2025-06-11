@@ -1,7 +1,21 @@
 {
   "version": 2,
   "builds": [
-    { "src": "wsgi.py", "use": "@vercel/python" }
+    {
+      "src": "wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": [
+          "wsgi.py",
+          "app.py",
+          "requirements.txt"
+        ],
+        "excludeFiles": [
+          "venv/**",
+          "__pycache__/**"
+        ]
+      }
+    }
   ],
   "routes": [
     { "src": "/(.*)", "dest": "wsgi.py" }

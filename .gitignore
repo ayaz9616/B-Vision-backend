@@ -1,7 +1,14 @@
+# Python cache files
 __pycache__/
 *.pyc
-.env
-*.sqlite3
+
+# Virtual env
 venv/
+.env
+
+# Database files
+*.sqlite3
+
+# IDE files
 .idea/
 .DS_Store
