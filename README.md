@@ -10,6 +10,12 @@
    </div>
   </header>
 
+  <h2 class="text-2xl font-semibold text-white mb-4">🎥 Demo Video</h2>
+
+[![Demo Video](https://res.cloudinary.com/di3bdmc6r/image/upload/v1749829687/B_Vision_thumbnail_clsag2.png)](https://drive.google.com/file/d/12IvQMYtZEa9foG6w607hpD2A7gZDRqR1/view)
+
+
+
   <section class="mb-8">
     <h2 class="text-2xl font-semibold text-white mb-4">✨ Key Features</h2>
     <ul class="list-disc list-inside space-y-2">
