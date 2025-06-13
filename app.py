@@ -1,5 +1,3 @@
-# backend/app.py
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import pandas as pd
@@ -12,19 +10,17 @@ from collections import Counter
 import spacy
 from spacy.matcher import PhraseMatcher
 
-# Flask app
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
-# Upload folder
 UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), '../uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-# Shared job states
+
 progress_dict = {}
 results_dict = {}
 
-# Age binning
+
 def bin_age(age):
     try:
         age = int(age)
@@ -36,7 +32,7 @@ def bin_age(age):
     except:
         return 'Unknown'
 
-# NLP Aspect Analysis
+
 def analyze_aspects(df):
     nlp = spacy.load('en_core_web_sm')
     FEATURES = {
@@ -75,7 +71,7 @@ def analyze_aspects(df):
     df["aspect_sentiments"] = df["Cleaned Review"].apply(extract_aspect_sentiment)
     return df
 
-# Group sentiment helper
+
 def group_sentiment(df, group_col):
     all_records = []
     for _, row in df.iterrows():
@@ -104,7 +100,7 @@ def group_sentiment(df, group_col):
     summary.columns = ['_'.join([str(c) for c in col]) if isinstance(col, tuple) else str(col) for col in summary.columns]
     return summary.to_dict(orient="records")
 
-# Overall sentiment aggregation
+
 def overall_sentiment(df):
     result = []
     for prod, group in df.groupby(["Product Name", "Month"]):
@@ -116,7 +112,6 @@ def overall_sentiment(df):
         result.append({"Product Name": p, "Month": m, "sentiment": "NEGATIVE", "count": neg})
     return result
 
-# Feature-wise summary
 def feature_summary(df):
     all_records = []
     for _, row in df.iterrows():
@@ -154,7 +149,7 @@ def analyze_job(job_id, df):
             if elapsed >= total_time:
                 break
 
-        # Actual analysis work
+     
         df = analyze_aspects(df)
         result = {
             'feature_summary': feature_summary(df),
